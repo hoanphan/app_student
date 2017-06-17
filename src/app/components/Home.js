@@ -11,27 +11,35 @@ const {width, height} = Dimensions.get('window');
 import iconEdit from '../../media/app_icon/edit.png';
 import iconAdd from '../../media/app_icon/add.png';
 import iconDelete from '../../media/app_icon/delete.png';
+
+
+
 export default class Home extends Component {
 
+
     static navigationOptions = {
+
         title: 'Danh sách học sinh',  headerRight: (
-            <TouchableOpacity>
-              <Image source={iconAdd} style={{width:20,height:20, margin:10}}/>
+            <TouchableOpacity  >
+              <Image source={iconAdd} style={{width:20,height:20, margin:10}} />
             </TouchableOpacity>
         ),
 
     };
+
 
     constructor() {
         super();
         const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
         this.state = {
             dataSource: ds.cloneWithRows([]),
-            visible: false
+            visible: false,
+
         };
     }
 
     render() {
+        const { navigate } = this.props.navigation;
         const {header_title, header, row, text_row, action,iconAction} = styles;
         return (<View style={{flex: 1, backgroundColor: '#fff'}}>
             <ListView
@@ -45,7 +53,7 @@ export default class Home extends Component {
                             <Text style={text_row}>{student.phone}</Text>
                             <Text style={text_row}>{Moment(student.birthday).format('L')}</Text>
                             <View style={action}>
-                                <TouchableOpacity>
+                                <TouchableOpacity onPress={() => navigate('Create')}>
                                     <Image source={iconEdit} style={iconAction}/>
                                 </TouchableOpacity>
                                 <TouchableOpacity>
