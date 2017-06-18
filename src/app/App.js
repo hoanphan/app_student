@@ -20,7 +20,6 @@ class App extends Component {
     // }
 
     render() {
-        console.log(this.props);
         return (
             this.getNavigation()
         );
@@ -28,9 +27,9 @@ class App extends Component {
 
     getNavigation() {
         const MainScreenNavigator = StackNavigator({
+
                 Home: {
                     screen: Home,
-                    headerMode: 'none',
                 },
                 Update: {
                     screen: Update

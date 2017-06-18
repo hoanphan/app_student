@@ -1,27 +1,25 @@
 export function fetchAPI(url, method = 'GET', body = null, isBlob = false) {
-var request;
-  if (method === 'POST') {
-    request = fetch(url, {
-      method,
-      body: isBlob ? body : JSON.stringify(body),
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': isBlob ? 'multipart/form-data' : 'application/json',
-      },
-    });
-  } else {
-      console.log(url);
-    request = fetch(url, {
-        method: 'GET',
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-        },
-    });
-    return request;
-  }
+    var request;
+    if (method === 'POST') {
+        request = fetch(url, {
+            method,
+            body: body,
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': isBlob ? 'multipart/form-data' : 'application/json',
+            },
+        });
+    } else {
+            request = fetch(url, {
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                },
+            });
+    }
 
-  return request;
+    return request;
 }
 
 // export function xhrAPI(url, body) {
